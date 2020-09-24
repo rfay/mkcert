@@ -190,3 +190,8 @@ Installing in the trust store does not require the CA key, so you can export the
 * run `mkcert -install`
 
 Remember that mkcert is meant for development purposes, not production, so it should not be used on end users' machines, and that you should *not* export or share `rootCA-key.pem`.
+
+## Creating a new release
+- Make sure all your changes are in the `master` branch and CI passes.
+- Run `git tag v1.x.x`, then `git push origin --tags`.
+- This will create a new git tag, which automatically triggers a release build that includes build artifacts 🚀

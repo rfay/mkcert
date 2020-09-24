@@ -41,5 +41,5 @@ jobs:
     - name: Publish artifacts
       uses: ncipollo/release-action@v1
       with:
-        artifacts: "dist/mkcert-*"
+        artifacts: "mkcert-*"
         token: ${{ secrets.GITHUB_TOKEN }}

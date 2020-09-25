@@ -38,6 +38,7 @@ jobs:
         CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -o "mkcert-$(git describe --tags)-darwin-amd64" -ldflags "-X main.Version=$(git describe --tags)"
         CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -o "mkcert-$(git describe --tags)-windows-amd64.exe" -ldflags "-X main.Version=$(git describe --tags)"
         CGO_ENABLED=0 GOOS=windows GOARCH=arm go build -o "mkcert-$(git describe --tags)-windows-arm.exe" -ldflags "-X main.Version=$(git describe --tags)"
+        CGO_ENABLED=0 GOOS=windows GOARCH=386 go build -o "mkcert-$(git describe --tags)-windows-386.exe" -ldflags "-X main.Version=$(git describe --tags)"
 
     - name: Publish artifacts
       uses: ncipollo/release-action@v1

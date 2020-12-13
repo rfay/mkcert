@@ -14,15 +14,6 @@ script:
   # TODO: When golang v1.16 comes out, make this a simple build using go instead of gotip (lose docker)
   - docker run --rm -w /workdir -v "$(PWD):/workdir" -e GOPATH="/go" -e "GOCACHE=/workdir/.gotmp"  drud/golang-build-container:v1.15.6 bash -c "CGO_ENABLED=0 GOOS=darwin GOARCH=arm64 gotip build -o \"mkcert-$(git describe --tags)-darwin-arm64\" -ldflags \"-X main.Version=$(git describe --tags)\" "
 
-  DOCKERBUILDCMD=docker run -t --rm                     \
-  -v "/$(PWD)://workdir$(DOCKERMOUNTFLAG)"                              \
-  -e GOPATH="//workdir/$(GOTMP)" \
-  -e GOCACHE="//workdir/$(GOTMP)/.cache" \
-  -e GOFLAGS="$(USEMODVENDOR)" \
-  -e CGO_ENABLED=0 \
-  -w //workdir              \
-  $(BUILD_IMAGE)
-
 deploy:
   provider: releases
   skip_cleanup: true

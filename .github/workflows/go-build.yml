@@ -42,5 +42,4 @@ jobs:
         CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -o "mkcert-$(git describe --tags)-windows-amd64.exe" -ldflags "-X main.Version=$(git describe --tags)"
         CGO_ENABLED=0 GOOS=windows GOARCH=arm go build -o "mkcert-$(git describe --tags)-windows-arm.exe" -ldflags "-X main.Version=$(git describe --tags)"
         CGO_ENABLED=0 GOOS=windows GOARCH=386 go build -o "mkcert-$(git describe --tags)-windows-386.exe" -ldflags "-X main.Version=$(git describe --tags)"
-    # TODO: When golang v1.16 comes out, make this a simple build using go instead of gotip (lose docker)
-        docker run --rm -w /workdir -v "$(PWD):/workdir" -e GOPATH="/go" -e "GOCACHE=/workdir/.gotmp"  drud/golang-build-container:v1.15.6 bash -c "CGO_ENABLED=0 GOOS=darwin GOARCH=arm64 gotip build -o \"mkcert-$(git describe --tags)-darwin-arm64\" -ldflags \"-X main.Version=$(git describe --tags)\" "
+        docker run --rm -w /workdir -v "${PWD}:/workdir" -e GOPATH="/go" -e "GOCACHE=/workdir/.gotmp"  drud/golang-build-container:v1.15.6 bash -c "CGO_ENABLED=0 GOOS=darwin GOARCH=arm64 gotip build -o \"mkcert-$(git describe --tags)-darwin-arm64\" -ldflags \"-X main.Version=$(git describe --tags)\" "
